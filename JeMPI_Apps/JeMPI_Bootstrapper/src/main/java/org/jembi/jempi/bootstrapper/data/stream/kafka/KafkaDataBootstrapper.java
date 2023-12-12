@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.jembi.jempi.bootstrapper.data.DataBootstrapper;
 import org.jembi.jempi.bootstrapper.data.utils.DataBootstraperConsts;
 import org.jembi.jempi.bootstrapper.utils.BootstrapperLogger;
-import org.jembi.jempi.shared.kafka.KafkaTopicManager;
+import org.jembi.jempi.libshared.kafka.KafkaTopicManager;
 
 import java.io.IOException;
 import java.io.InputStream;

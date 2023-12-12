@@ -6,17 +6,23 @@ import io.vavr.control.Either;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.*;
-import org.jembi.jempi.shared.utils.AppUtils;
+import org.jembi.jempi.libconfig.dgraph.CustomDgraphExpandedGoldenRecord;
+import org.jembi.jempi.libconfig.dgraph.CustomDgraphExpandedInteraction;
+import org.jembi.jempi.libconfig.dgraph.CustomDgraphGoldenRecord;
+import org.jembi.jempi.libconfig.dgraph.DgraphGoldenRecords;
+import org.jembi.jempi.libconfig.shared.models.CustomDemographicData;
+import org.jembi.jempi.libconfig.shared.models.Interaction;
+import org.jembi.jempi.libconfig.shared.utils.AppUtils;
+import org.jembi.jempi.libshared.models.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static org.jembi.jempi.libmpi.dgraph.CustomDgraphConstants.GOLDEN_RECORD_FIELD_NAMES;
+import static org.jembi.jempi.libconfig.dgraph.CustomDgraphConstants.*;
 
 final class DgraphQueries {
 
-   static final String EMPTY_FIELD_SENTINEL = "EMPTY_FIELD_SENTINEL";
+
    private static final Logger LOGGER = LogManager.getLogger(DgraphQueries.class);
 
    private DgraphQueries() {
@@ -109,11 +115,11 @@ final class DgraphQueries {
          return null;
       }
       final var vars = Map.of("$uid", interactionId);
-      final var interactionList = runInteractionsQuery(CustomDgraphConstants.QUERY_GET_INTERACTION_BY_UID, vars).all();
+      final var interactionList = runInteractionsQuery(QUERY_GET_INTERACTION_BY_UID, vars).all();
       if (AppUtils.isNullOrEmpty(interactionList)) {
          return null;
       }
-      return interactionList.get(0).toInteractionWithScore().interaction();
+      return interactionList.getFirst().toInteractionWithScore().interaction();
    }
 
    static CustomDgraphGoldenRecord findDgraphGoldenRecord(final String goldenId) {
@@ -121,7 +127,7 @@ final class DgraphQueries {
          return null;
       }
       final var vars = Map.of("$uid", goldenId);
-      final var goldenRecordList = runGoldenRecordsQuery(CustomDgraphConstants.QUERY_GET_GOLDEN_RECORD_BY_UID, vars).all();
+      final var goldenRecordList = runGoldenRecordsQuery(QUERY_GET_GOLDEN_RECORD_BY_UID, vars).all();
 
       if (AppUtils.isNullOrEmpty(goldenRecordList)) {
          LOGGER.warn("No goldenRecord for {}", goldenId);
@@ -257,7 +263,7 @@ final class DgraphQueries {
 
    static List<CustomDgraphExpandedInteraction> findExpandedInteractions(final List<String> ids) {
       final String query =
-            String.format(Locale.ROOT, CustomDgraphConstants.QUERY_GET_EXPANDED_INTERACTIONS, String.join(",", ids));
+            String.format(Locale.ROOT, QUERY_GET_EXPANDED_INTERACTIONS, String.join(",", ids));
       final String json = DgraphClient.getInstance().executeReadOnlyTransaction(query, null);
       try {
          final var records = AppUtils.OBJECT_MAPPER.readValue(json, DgraphExpandedInteractions.class);
@@ -269,7 +275,7 @@ final class DgraphQueries {
    }
 
    static List<CustomDgraphGoldenRecord> findGoldenRecords(final List<String> ids) {
-      final String query = String.format(Locale.ROOT, CustomDgraphConstants.QUERY_GET_GOLDEN_RECORDS, String.join(",", ids));
+      final String query = String.format(Locale.ROOT, QUERY_GET_GOLDEN_RECORDS, String.join(",", ids));
       final String json = DgraphClient.getInstance().executeReadOnlyTransaction(query, null);
       try {
          final var records = AppUtils.OBJECT_MAPPER.readValue(json, DgraphGoldenRecords.class);
@@ -282,7 +288,7 @@ final class DgraphQueries {
 
    static List<CustomDgraphExpandedGoldenRecord> getExpandedGoldenRecords(final List<String> ids) {
       final String query =
-            String.format(Locale.ROOT, CustomDgraphConstants.QUERY_GET_EXPANDED_GOLDEN_RECORDS, String.join(",", ids));
+            String.format(Locale.ROOT, QUERY_GET_EXPANDED_GOLDEN_RECORDS, String.join(",", ids));
       final String json = DgraphClient.getInstance().executeReadOnlyTransaction(query, null);
       try {
          final var records = AppUtils.OBJECT_MAPPER.readValue(json, DgraphExpandedGoldenRecords.class);
@@ -452,7 +458,7 @@ final class DgraphQueries {
       String gql = "query search(" + String.join(", ", gqlArgs) + ") {\n";
       gql += String.format(Locale.ROOT, "all(%s) @filter(%s)", gqlFunc, gqlFilters);
       gql += "{\n";
-      gql += CustomDgraphConstants.EXPANDED_GOLDEN_RECORD_FIELD_NAMES;
+      gql += EXPANDED_GOLDEN_RECORD_FIELD_NAMES;
       gql += "}\n";
       gql += gqlPagination;
       gql += "}";
@@ -503,7 +509,7 @@ final class DgraphQueries {
       String gql = "query search(" + String.join(", ", gqlArgs) + ") {\n";
       gql += String.format(Locale.ROOT, "all(%s) @filter(%s)", gqlFunc, gqlFilters);
       gql += "{\n";
-      gql += CustomDgraphConstants.INTERACTION_FIELD_NAMES;
+      gql += INTERACTION_FIELD_NAMES;
       gql += "}\n";
       gql += gqlPagination;
       gql += "}";

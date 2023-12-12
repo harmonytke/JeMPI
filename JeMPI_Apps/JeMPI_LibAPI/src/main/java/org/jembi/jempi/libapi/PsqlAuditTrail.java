@@ -2,7 +2,7 @@ package org.jembi.jempi.libapi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.AuditEvent;
+import org.jembi.jempi.libshared.models.AuditEvent;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static org.jembi.jempi.shared.models.GlobalConstants.PSQL_TABLE_AUDIT_TRAIL;
+import static org.jembi.jempi.libshared.models.GlobalConstants.PSQL_TABLE_AUDIT_TRAIL;
 
 final class PsqlAuditTrail {
    private static final Logger LOGGER = LogManager.getLogger(PsqlAuditTrail.class);

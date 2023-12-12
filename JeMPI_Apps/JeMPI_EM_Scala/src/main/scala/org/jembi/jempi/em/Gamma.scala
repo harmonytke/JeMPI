@@ -1,10 +1,12 @@
 package org.jembi.jempi.em
 
+import com.typesafe.scalalogging.LazyLogging
+
 import scala.annotation.tailrec
 import scala.collection.immutable.ArraySeq
 import scala.collection.parallel.immutable.ParVector
 
-object Gamma {
+object Gamma extends LazyLogging {
 
   @tailrec
   def getGamma(

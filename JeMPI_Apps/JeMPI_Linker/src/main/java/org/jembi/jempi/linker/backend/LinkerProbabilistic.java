@@ -7,15 +7,16 @@ import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.apache.commons.text.similarity.SimilarityScore;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.CustomMU;
-import org.jembi.jempi.shared.utils.AppUtils;
+import org.jembi.jempi.libconfig.linker.CustomLinkerProbabilistic;
+import org.jembi.jempi.libconfig.shared.models.CustomMU;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
-import static org.jembi.jempi.linker.backend.CustomLinkerProbabilistic.*;
+import static org.jembi.jempi.libconfig.linker.CustomLinkerProbabilistic.*;
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
 final class LinkerProbabilistic {
 
@@ -205,7 +206,7 @@ final class LinkerProbabilistic {
             final var w = IntStream.range(0, n).mapToDouble(i -> abs(1.0 - (z * i))).boxed().map(Double::floatValue).toList();
             if (LOGGER.isDebugEnabled()) {
                try {
-                  LOGGER.debug("{}", AppUtils.OBJECT_MAPPER.writeValueAsString(w));
+                  LOGGER.debug("{}", OBJECT_MAPPER.writeValueAsString(w));
                } catch (JsonProcessingException e) {
                   LOGGER.error(e.getLocalizedMessage(), e);
                }
@@ -223,7 +224,7 @@ final class LinkerProbabilistic {
                                    .toList();
             if (LOGGER.isDebugEnabled()) {
                try {
-                  LOGGER.debug("{}", AppUtils.OBJECT_MAPPER.writeValueAsString(w));
+                  LOGGER.debug("{}", OBJECT_MAPPER.writeValueAsString(w));
                } catch (JsonProcessingException e) {
                   LOGGER.error(e.getLocalizedMessage(), e);
                }

@@ -9,16 +9,23 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.jembi.jempi.libconfig.dgraph.CustomDgraphMutations;
+import org.jembi.jempi.libconfig.shared.models.CustomDemographicData;
+import org.jembi.jempi.libconfig.shared.models.CustomSourceId;
+import org.jembi.jempi.libconfig.shared.models.CustomUniqueGoldenRecordData;
+import org.jembi.jempi.libconfig.shared.models.Interaction;
+import org.jembi.jempi.libconfig.shared.utils.AppUtils;
 import org.jembi.jempi.libmpi.LibMPIClientInterface;
 import org.jembi.jempi.libmpi.MpiGeneralError;
 import org.jembi.jempi.libmpi.MpiServiceError;
-import org.jembi.jempi.shared.models.*;
-import org.jembi.jempi.shared.utils.AppUtils;
+import org.jembi.jempi.libshared.models.LinkInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+
+import static org.jembi.jempi.libconfig.dgraph.CustomDgraphConstants.*;
 
 final class DgraphMutations {
 
@@ -298,9 +305,9 @@ final class DgraphMutations {
       if (grec == null) {
          return Either.left(new MpiServiceError.GoldenIdDoesNotExistError("Golden Record not found", currentGoldenId));
       }
-      if (!deletePredicate(currentGoldenId, CustomDgraphConstants.PREDICATE_GOLDEN_RECORD_INTERACTIONS, interactionId)) {
+      if (!deletePredicate(currentGoldenId, PREDICATE_GOLDEN_RECORD_INTERACTIONS, interactionId)) {
          return Either.left(new MpiServiceError.DeletePredicateError(interactionId,
-                                                                     CustomDgraphConstants.PREDICATE_GOLDEN_RECORD_INTERACTIONS));
+                                                                     PREDICATE_GOLDEN_RECORD_INTERACTIONS));
       }
       if (count == 1) {
          deleteGoldenRecord(currentGoldenId);
@@ -357,7 +364,7 @@ final class DgraphMutations {
 
    Option<MpiGeneralError> createSchema() {
       final var schema =
-            CustomDgraphConstants.MUTATION_CREATE_SOURCE_ID_TYPE + CustomDgraphConstants.MUTATION_CREATE_GOLDEN_RECORD_TYPE + CustomDgraphConstants.MUTATION_CREATE_INTERACTION_TYPE + CustomDgraphConstants.MUTATION_CREATE_SOURCE_ID_FIELDS + CustomDgraphConstants.MUTATION_CREATE_GOLDEN_RECORD_FIELDS + CustomDgraphConstants.MUTATION_CREATE_INTERACTION_FIELDS;
+            MUTATION_CREATE_SOURCE_ID_TYPE + MUTATION_CREATE_GOLDEN_RECORD_TYPE + MUTATION_CREATE_INTERACTION_TYPE + MUTATION_CREATE_SOURCE_ID_FIELDS + MUTATION_CREATE_GOLDEN_RECORD_FIELDS + MUTATION_CREATE_INTERACTION_FIELDS;
       try {
          final DgraphProto.Operation operation = DgraphProto.Operation.newBuilder().setSchema(schema).build();
          DgraphClient.getInstance().alter(operation);

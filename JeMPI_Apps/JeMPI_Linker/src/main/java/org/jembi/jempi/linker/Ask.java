@@ -6,8 +6,8 @@ import akka.actor.typed.javadsl.AskPattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jembi.jempi.linker.backend.BackEnd;
-import org.jembi.jempi.shared.models.ApiModels;
-import org.jembi.jempi.shared.models.InteractionEnvelop;
+import org.jembi.jempi.libshared.models.ApiModels;
+import org.jembi.jempi.libshared.models.InteractionEnvelop;
 
 import java.util.concurrent.CompletionStage;
 

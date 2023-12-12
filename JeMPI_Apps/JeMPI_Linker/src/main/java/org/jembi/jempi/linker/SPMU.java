@@ -13,11 +13,11 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jembi.jempi.AppConfig;
+import org.jembi.jempi.libconfig.shared.models.CustomMU;
 import org.jembi.jempi.linker.backend.BackEnd;
-import org.jembi.jempi.shared.models.CustomMU;
-import org.jembi.jempi.shared.models.GlobalConstants;
-import org.jembi.jempi.shared.serdes.JsonPojoDeserializer;
-import org.jembi.jempi.shared.serdes.JsonPojoSerializer;
+import org.jembi.jempi.libshared.models.GlobalConstants;
+import org.jembi.jempi.libshared.serdes.JsonPojoDeserializer;
+import org.jembi.jempi.libshared.serdes.JsonPojoSerializer;
 
 import java.util.Properties;
 import java.util.concurrent.CompletionStage;

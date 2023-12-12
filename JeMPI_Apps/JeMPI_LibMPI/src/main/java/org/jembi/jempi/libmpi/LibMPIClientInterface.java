@@ -2,7 +2,8 @@ package org.jembi.jempi.libmpi;
 
 import io.vavr.control.Either;
 import io.vavr.control.Option;
-import org.jembi.jempi.shared.models.*;
+import org.jembi.jempi.libconfig.shared.models.*;
+import org.jembi.jempi.libshared.models.*;
 
 import java.time.LocalDateTime;
 import java.util.List;

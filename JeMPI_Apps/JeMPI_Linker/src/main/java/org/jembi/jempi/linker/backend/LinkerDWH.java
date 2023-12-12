@@ -5,21 +5,25 @@ import io.vavr.control.Either;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jembi.jempi.libconfig.linker.CustomLinkerDeterministic;
+import org.jembi.jempi.libconfig.linker.CustomLinkerProbabilistic;
+import org.jembi.jempi.libconfig.shared.models.ExpandedGoldenRecord;
+import org.jembi.jempi.libconfig.shared.models.GoldenRecord;
+import org.jembi.jempi.libconfig.shared.models.Interaction;
+import org.jembi.jempi.libconfig.shared.utils.AppUtils;
 import org.jembi.jempi.libmpi.LibMPI;
 import org.jembi.jempi.libmpi.LibMPIClientInterface;
-import org.jembi.jempi.shared.models.*;
-import org.jembi.jempi.shared.utils.AppUtils;
+import org.jembi.jempi.libshared.models.ExternalLinkCandidate;
+import org.jembi.jempi.libshared.models.ExternalLinkRange;
+import org.jembi.jempi.libshared.models.LinkInfo;
+import org.jembi.jempi.libshared.models.Notification;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.abs;
-import static org.jembi.jempi.shared.utils.AppUtils.OBJECT_MAPPER;
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
 final class LinkerDWH {
 
@@ -36,13 +40,38 @@ final class LinkerDWH {
       return (StringUtils.isBlank(textLeft) && countRight >= 1) || (countRight > countLeft && !textRight.equals(textLeft));
    }
 
+   static void updateGoldenRecordFields(
+         final LibMPI libMPI,
+         final float threshold,
+         final String interactionId,
+         final String goldenId) {
+      final var expandedGoldenRecord = libMPI.findExpandedGoldenRecords(List.of(goldenId)).getFirst();
+      final var goldenRecord = expandedGoldenRecord.goldenRecord();
+      final var demographicData = goldenRecord.demographicData();
+      var k = Arrays
+            .stream(demographicData.fields)
+            .map(field -> LinkerDWH.helperUpdateGoldenRecordField(libMPI,
+                                                                  interactionId,
+                                                                  expandedGoldenRecord,
+                                                                  field.idx(),
+                                                                  field.name(),
+                                                                  field.value())
+                  ? 1
+                  : 0)
+            .reduce(0, Integer::sum);
+      if (k > 0) {
+         helperUpdateInteractionsScore(libMPI, threshold, expandedGoldenRecord);
+      }
+
+   }
+
    static boolean helperUpdateGoldenRecordField(
          final LibMPI libMPI,
          final String interactionId,
          final ExpandedGoldenRecord expandedGoldenRecord,
+         final int idx,
          final String fieldName,
-         final String goldenRecordFieldValue,
-         final Function<CustomDemographicData, String> getDemographicField) {
+         final String goldenRecordFieldValue) {
 
       boolean changed = false;
 
@@ -51,8 +80,8 @@ final class LinkerDWH {
       } else {
          final var mpiInteractions = expandedGoldenRecord.interactionsWithScore();
          final var freqMapGroupedByField = mpiInteractions.stream()
-                                                          .map(mpiInteraction -> getDemographicField.apply(mpiInteraction.interaction()
-                                                                                                                         .demographicData()))
+                                                          .map(mpiInteraction -> mpiInteraction.interaction()
+                                                                                               .demographicData().fields[idx].value())
                                                           .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
          freqMapGroupedByField.remove(StringUtils.EMPTY);
          if (!freqMapGroupedByField.isEmpty()) {
@@ -234,10 +263,7 @@ final class LinkerDWH {
                                       aboveThresholdNotifications);
                   }
                   if (Boolean.TRUE.equals(firstCandidate.goldenRecord.customUniqueGoldenRecordData().auxAutoUpdateEnabled())) {
-                     CustomLinkerBackEnd.updateGoldenRecordFields(libMPI,
-                                                                  matchThreshold,
-                                                                  linkInfo.interactionUID(),
-                                                                  linkInfo.goldenUID());
+                     updateGoldenRecordFields(libMPI, matchThreshold, linkInfo.interactionUID(), linkInfo.goldenUID());
                   }
                   final var marginCandidates = new ArrayList<Notification.MatchData>();
                   if (candidatesInExternalLinkRange.isEmpty() && candidatesAboveMatchThreshold.size() > 1) {

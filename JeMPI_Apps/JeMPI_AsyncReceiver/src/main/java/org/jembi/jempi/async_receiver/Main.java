@@ -8,11 +8,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.jembi.jempi.AppConfig;
-import org.jembi.jempi.shared.kafka.MyKafkaProducer;
-import org.jembi.jempi.shared.models.GlobalConstants;
-import org.jembi.jempi.shared.models.Interaction;
-import org.jembi.jempi.shared.models.InteractionEnvelop;
-import org.jembi.jempi.shared.serdes.JsonPojoSerializer;
+import org.jembi.jempi.libconfig.async.CustomAsyncHelper;
+import org.jembi.jempi.libconfig.shared.models.Interaction;
+import org.jembi.jempi.libshared.kafka.MyKafkaProducer;
+import org.jembi.jempi.libshared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.InteractionEnvelop;
+import org.jembi.jempi.libshared.serdes.JsonPojoSerializer;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -21,8 +22,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static java.nio.file.StandardWatchEventKinds.*;
 
@@ -45,24 +44,24 @@ public final class Main {
       return (WatchEvent<T>) event;
    }
 
-   static String parseRecordNumber(final String in) {
-      final var regex = "^rec-(?<rnum>\\d+)-(?<class>(org|aaa|dup|bbb)?)-?(?<dnum>\\d+)?$";
-      final Pattern pattern = Pattern.compile(regex);
-      final Matcher matcher = pattern.matcher(in);
-      if (matcher.find()) {
-         final var rNumber = matcher.group("rnum");
-         final var klass = matcher.group("class");
-         final var dNumber = matcher.group("dnum");
-         return String.format(Locale.ROOT,
-                              "rec-%010d-%s-%d",
-                              Integer.parseInt(rNumber),
-                              klass,
-                              (("org".equals(klass) || "aaa".equals(klass))
-                                     ? 0
-                                     : Integer.parseInt(dNumber)));
-      }
-      return in;
-   }
+//   static String parseRecordNumber(final String in) {
+//      final var regex = "^rec-(?<rnum>\\d+)-(?<class>(org|aaa|dup|bbb)?)-?(?<dnum>\\d+)?$";
+//      final Pattern pattern = Pattern.compile(regex);
+//      final Matcher matcher = pattern.matcher(in);
+//      if (matcher.find()) {
+//         final var rNumber = matcher.group("rnum");
+//         final var klass = matcher.group("class");
+//         final var dNumber = matcher.group("dnum");
+//         return String.format(Locale.ROOT,
+//                              "rec-%010d-%s-%d",
+//                              Integer.parseInt(rNumber),
+//                              klass,
+//                              (("org".equals(klass) || "aaa".equals(klass))
+//                                     ? 0
+//                                     : Integer.parseInt(dNumber)));
+//      }
+//      return in;
+//   }
 
    private void sendToKafka(
          final String key,

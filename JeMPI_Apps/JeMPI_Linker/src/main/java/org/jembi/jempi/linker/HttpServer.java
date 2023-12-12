@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jembi.jempi.AppConfig;
 import org.jembi.jempi.linker.backend.BackEnd;
-import org.jembi.jempi.shared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.GlobalConstants;
 
 import java.util.concurrent.CompletionStage;
 

@@ -6,11 +6,11 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jembi.jempi.libconfig.shared.models.*;
 import org.jembi.jempi.libmpi.dgraph.LibDgraph;
-import org.jembi.jempi.libmpi.postgresql.LibPostgresql;
-import org.jembi.jempi.shared.kafka.MyKafkaProducer;
-import org.jembi.jempi.shared.models.*;
-import org.jembi.jempi.shared.serdes.JsonPojoSerializer;
+import org.jembi.jempi.libshared.kafka.MyKafkaProducer;
+import org.jembi.jempi.libshared.models.*;
+import org.jembi.jempi.libshared.serdes.JsonPojoSerializer;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -37,21 +37,6 @@ public final class LibMPI {
                                                new JsonPojoSerializer<>(),
                                                kafkaClientId);
       client = new LibDgraph(level, host, port);
-   }
-
-   public LibMPI(
-         final String URL,
-         final String USR,
-         final String PSW,
-         final String kafkaBootstrapServers,
-         final String kafkaClientId) {
-      LOGGER.info("{}", "LibMPI Constructor");
-      topicAuditEvents = new MyKafkaProducer<>(kafkaBootstrapServers,
-                                               GlobalConstants.TOPIC_AUDIT_TRAIL,
-                                               new StringSerializer(),
-                                               new JsonPojoSerializer<>(),
-                                               kafkaClientId);
-      client = new LibPostgresql(URL, USR, PSW);
    }
 
    private void sendAuditEvent(

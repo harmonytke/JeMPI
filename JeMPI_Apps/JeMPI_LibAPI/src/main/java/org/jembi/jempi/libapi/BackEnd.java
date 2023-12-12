@@ -9,11 +9,13 @@ import io.vavr.control.Either;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jembi.jempi.libconfig.shared.models.ExpandedGoldenRecord;
+import org.jembi.jempi.libconfig.shared.models.ExpandedInteraction;
+import org.jembi.jempi.libconfig.shared.models.Interaction;
 import org.jembi.jempi.libmpi.LibMPI;
 import org.jembi.jempi.libmpi.MpiGeneralError;
 import org.jembi.jempi.libmpi.MpiServiceError;
-import org.jembi.jempi.shared.models.*;
-import org.jembi.jempi.shared.utils.AppUtils;
+import org.jembi.jempi.libshared.models.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +25,10 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public final class BackEnd extends AbstractBehavior<BackEnd.Event> {
 
@@ -105,15 +110,7 @@ public final class BackEnd extends AbstractBehavior<BackEnd.Event> {
          final String kafkaBootstrapServers,
          final String kafkaClientId,
          final Level debugLevel) {
-      if (!AppUtils.isNullOrEmpty(Arrays.stream(dgraphHosts).toList())) {
-         libMPI = new LibMPI(debugLevel, dgraphHosts, dgraphPorts, kafkaBootstrapServers, kafkaClientId);
-      } else {
-         libMPI = new LibMPI(String.format(Locale.ROOT, "jdbc:postgresql://%s:%d/%s", pgIP, pgPort, pgAuditDb),
-                             pgUser,
-                             pgPassword,
-                             kafkaBootstrapServers,
-                             kafkaClientId);
-      }
+      libMPI = new LibMPI(debugLevel, dgraphHosts, dgraphPorts, kafkaBootstrapServers, kafkaClientId);
    }
 
    @Override

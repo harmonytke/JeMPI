@@ -1,6 +1,7 @@
 package org.jembi.jempi.libmpi;
 
-import org.jembi.jempi.shared.models.CustomDemographicData;
+
+import org.jembi.jempi.libconfig.shared.models.CustomDemographicData;
 
 import java.util.List;
 

@@ -7,8 +7,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.ApiModels;
-import org.jembi.jempi.shared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.ApiModels;
+import org.jembi.jempi.libshared.models.GlobalConstants;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-import static org.jembi.jempi.shared.utils.AppUtils.OBJECT_MAPPER;
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
 class ApiClient {
    private static final Logger LOGGER = LogManager.getLogger(ApiClient.class);

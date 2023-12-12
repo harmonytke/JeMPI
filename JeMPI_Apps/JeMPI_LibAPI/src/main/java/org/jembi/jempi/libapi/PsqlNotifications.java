@@ -2,7 +2,7 @@ package org.jembi.jempi.libapi;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.MatchesForReviewResult;
+import org.jembi.jempi.libshared.models.MatchesForReviewResult;
 
 import java.sql.*;
 import java.time.LocalDate;

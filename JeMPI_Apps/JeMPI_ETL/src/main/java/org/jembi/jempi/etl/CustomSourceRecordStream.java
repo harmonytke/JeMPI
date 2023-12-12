@@ -1,5 +1,6 @@
 package org.jembi.jempi.etl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
@@ -15,15 +16,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.jembi.jempi.AppConfig;
-import org.jembi.jempi.shared.models.GlobalConstants;
-import org.jembi.jempi.shared.models.Interaction;
-import org.jembi.jempi.shared.models.InteractionEnvelop;
-import org.jembi.jempi.shared.serdes.JsonPojoDeserializer;
-import org.jembi.jempi.shared.serdes.JsonPojoSerializer;
+import org.jembi.jempi.libconfig.shared.models.Interaction;
+import org.jembi.jempi.libshared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.InteractionEnvelop;
+import org.jembi.jempi.libshared.serdes.JsonPojoDeserializer;
+import org.jembi.jempi.libshared.serdes.JsonPojoSerializer;
 
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
+
 
 public final class CustomSourceRecordStream {
 
@@ -58,6 +62,11 @@ public final class CustomSourceRecordStream {
                                                                           rec.interaction().sourceId(),
                                                                           interaction.uniqueInteractionData(),
                                                                           demographicData.clean()));
+            try {
+               LOGGER.debug("{}", OBJECT_MAPPER.writeValueAsString(newEnvelop));
+            } catch (JsonProcessingException e) {
+               LOGGER.error(e.getLocalizedMessage(), e);
+            }
             return KeyValue.pair(key, newEnvelop);
          } else {
             return KeyValue.pair(key, rec);

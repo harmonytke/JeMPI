@@ -2,7 +2,9 @@ package org.jembi.jempi.linker.backend;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.CustomDemographicData;
+import org.jembi.jempi.libconfig.linker.CustomLinkerDeterministic;
+import org.jembi.jempi.libconfig.linker.CustomLinkerProbabilistic;
+import org.jembi.jempi.libconfig.shared.models.CustomDemographicData;
 
 final class LinkerUtils {
 

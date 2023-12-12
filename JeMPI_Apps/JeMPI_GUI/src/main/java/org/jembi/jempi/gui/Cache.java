@@ -2,8 +2,8 @@ package org.jembi.jempi.gui;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.ApiModels;
-import org.jembi.jempi.shared.models.CustomDemographicData;
+import org.jembi.jempi.libconfig.shared.models.CustomDemographicData;
+import org.jembi.jempi.libshared.models.ApiModels;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,7 +7,7 @@ import io.grpc.ManagedChannelBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.utils.AppUtils;
+import org.jembi.jempi.libconfig.shared.utils.AppUtils;
 
 import java.util.ArrayList;
 import java.util.Map;

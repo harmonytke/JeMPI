@@ -6,10 +6,12 @@ import io.vavr.control.Option;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jembi.jempi.libconfig.dgraph.*;
+import org.jembi.jempi.libconfig.shared.models.*;
 import org.jembi.jempi.libmpi.LibMPIClientInterface;
 import org.jembi.jempi.libmpi.MpiGeneralError;
 import org.jembi.jempi.libmpi.MpiServiceError;
-import org.jembi.jempi.shared.models.*;
+import org.jembi.jempi.libshared.models.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -89,12 +91,12 @@ public final class LibDgraph implements LibMPIClientInterface {
    }
 
    public List<GoldenRecord> findLinkCandidates(final CustomDemographicData demographicData) {
-      final var candidates = CustomDgraphQueries.findLinkCandidates(demographicData);
+      final var candidates = CustomDgraphQueries.findLinkCandidates(DgraphQueries::runGoldenRecordsQuery, demographicData);
       return candidates.stream().map(CustomDgraphGoldenRecord::toGoldenRecord).toList();
    }
 
    public List<GoldenRecord> findMatchCandidates(final CustomDemographicData demographicData) {
-      final var candidates = CustomDgraphQueries.findMatchCandidates(demographicData);
+      final var candidates = CustomDgraphQueries.findMatchCandidates(DgraphQueries::runGoldenRecordsQuery, demographicData);
       return candidates.stream().map(CustomDgraphGoldenRecord::toGoldenRecord).toList();
    }
 
@@ -109,7 +111,7 @@ public final class LibDgraph implements LibMPIClientInterface {
          return null;
       }
       final var data = list.all().stream().map(CustomDgraphExpandedGoldenRecord::toExpandedGoldenRecord).toList();
-      final var pagination = list.pagination().get(0);
+      final var pagination = list.pagination().getFirst();
       return new LibMPIPaginatedResultSet<>(data, pagination);
    }
 
@@ -118,7 +120,7 @@ public final class LibDgraph implements LibMPIClientInterface {
          return null;
       }
       final var data = list.all().stream().map(CustomDgraphInteraction::toInteraction).toList();
-      final var pagination = list.pagination().get(0);
+      final var pagination = list.pagination().getFirst();
       return new LibMPIPaginatedResultSet<>(data, pagination);
    }
 

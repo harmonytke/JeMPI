@@ -28,7 +28,7 @@ object EM_Scala extends LazyLogging {
   mapper.registerModule(DefaultScalaModule)
   mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
-  private val buffer = new ArrayBuffer[Array[String]]()
+  private val buffer = new ArrayBuffer[ArraySeq[String]]()
 
   def main(args: Array[String]): Unit = {
 
@@ -52,42 +52,12 @@ object EM_Scala extends LazyLogging {
           thread.start();
         case "BATCH_INTERACTION" =>
           if (interactionEnvelop.interaction.isDefined) {
-            val auxId =
-              interactionEnvelop.interaction.get.uniqueInteractionData.auxId
-            val givenName =
-              interactionEnvelop.interaction.get.demographicData.givenName
-            val familyName =
-              interactionEnvelop.interaction.get.demographicData.familyName
-            val gender =
-              interactionEnvelop.interaction.get.demographicData.gender
-            val dob = interactionEnvelop.interaction.get.demographicData.dob
-            val city = interactionEnvelop.interaction.get.demographicData.city
-            val phoneNumber =
-              interactionEnvelop.interaction.get.demographicData.phoneNumber
-            val nationalId =
-              interactionEnvelop.interaction.get.demographicData.nationalId
-            val interaction = Array(
-              auxId,
-              givenName,
-              familyName,
-              gender,
-              dob,
-              city,
-              phoneNumber,
-              nationalId
-            )
+            val interaction =
+              interactionEnvelop.interaction.get.demographicData.fields.map(f =>
+                f.value
+              )
             buffer += interaction
-            logger.info(
-              "{} {} {} {} {} {} {} {}",
-              auxId,
-              givenName,
-              familyName,
-              gender,
-              dob,
-              city,
-              phoneNumber,
-              nationalId
-            )
+            logger.info("{}", interaction.mkString(", "))
           }
       }
     })
@@ -109,15 +79,11 @@ object EM_Scala extends LazyLogging {
     props
   }
 
-  private class EM_Runnable(val interactions: ParVector[Array[String]])
+  private class EM_Runnable(val interactions: ParVector[ArraySeq[String]])
       extends Runnable {
 
     def run(): Unit = {
-      val interactions_ : ParVector[ArraySeq[String]] =
-        interactions.map((fields: Array[String]) =>
-          ArraySeq.unsafeWrapArray(fields)
-        )
-      val (mu, ms) = Profile.profile(EM_Task.run(interactions_))
+      val (mu, ms) = Profile.profile(EM_Task.run(interactions))
 
       Fields.FIELDS.zipWithIndex.foreach(x =>
         Utils.printMU(x._1.name, mu(x._2))

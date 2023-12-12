@@ -6,7 +6,7 @@ import akka.actor.typed.javadsl.AskPattern;
 import akka.http.javadsl.server.directives.FileInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jembi.jempi.shared.models.*;
+import org.jembi.jempi.libshared.models.*;
 
 import java.io.File;
 import java.time.LocalDate;

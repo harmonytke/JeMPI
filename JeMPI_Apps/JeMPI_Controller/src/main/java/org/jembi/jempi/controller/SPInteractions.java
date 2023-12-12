@@ -2,6 +2,7 @@ package org.jembi.jempi.controller;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.ActorSystem;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.kafka.common.serialization.*;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -12,13 +13,15 @@ import org.apache.kafka.streams.kstream.Produced;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jembi.jempi.AppConfig;
-import org.jembi.jempi.shared.kafka.MyKafkaProducer;
-import org.jembi.jempi.shared.models.GlobalConstants;
-import org.jembi.jempi.shared.models.InteractionEnvelop;
-import org.jembi.jempi.shared.serdes.JsonPojoDeserializer;
-import org.jembi.jempi.shared.serdes.JsonPojoSerializer;
+import org.jembi.jempi.libshared.kafka.MyKafkaProducer;
+import org.jembi.jempi.libshared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.InteractionEnvelop;
+import org.jembi.jempi.libshared.serdes.JsonPojoDeserializer;
+import org.jembi.jempi.libshared.serdes.JsonPojoSerializer;
 
 import java.util.Properties;
+
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
 public final class SPInteractions {
 
@@ -49,7 +52,17 @@ public final class SPInteractions {
                                       new JsonPojoSerializer<>(),
                                       AppConfig.KAFKA_CLIENT_ID);
       batchPatientRecordKStream.peek((key, batchPatient) -> {
+         try {
+            LOGGER.debug("{}", OBJECT_MAPPER.writeValueAsString(batchPatient));
+         } catch (JsonProcessingException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+         }
          topicEM.produceAsync(key, batchPatient, ((metadata, exception) -> {
+            try {
+               LOGGER.debug("{}", OBJECT_MAPPER.writeValueAsString(batchPatient));
+            } catch (JsonProcessingException e) {
+               LOGGER.error(e.getLocalizedMessage(), e);
+            }
             if (exception != null) {
                LOGGER.error(exception.toString());
             }

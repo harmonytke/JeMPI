@@ -12,7 +12,7 @@ import org.jembi.jempi.api.httpServer.httpServerRoutes.ApiHttpServerRouteEntries
 import org.jembi.jempi.api.keyCloak.KeyCloakAuthenticator;
 import org.jembi.jempi.api.keyCloak.OAuthCodeRequestPayload;
 import org.jembi.jempi.api.user.UserSession;
-import org.jembi.jempi.shared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.GlobalConstants;
 
 import static akka.http.javadsl.server.Directives.*;
 

@@ -12,13 +12,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jembi.jempi.AppConfig;
-import org.jembi.jempi.shared.models.ApiModels;
-import org.jembi.jempi.shared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.ApiModels;
+import org.jembi.jempi.libshared.models.GlobalConstants;
 
 import java.util.Locale;
 import java.util.concurrent.CompletionStage;
 
-import static org.jembi.jempi.shared.utils.AppUtils.OBJECT_MAPPER;
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
 public final class HttpServer extends AllDirectives {
 

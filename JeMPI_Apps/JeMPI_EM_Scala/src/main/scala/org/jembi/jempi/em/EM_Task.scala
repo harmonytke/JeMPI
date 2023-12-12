@@ -14,13 +14,11 @@ object EM_Task extends LazyLogging {
 
   def run(interactions: ParVector[ArraySeq[String]]): ArraySeq[MU] = {
 
-    val interactions_ = interactions.map(i => i.tail)
-
     val (gamma, ms2) = Profile.profile(
       Gamma.getGamma(
         Map[String, Long](),
-        interactions_.head,
-        interactions_.tail
+        interactions.head,
+        interactions.tail
       )
     )
     logger.info(s"$ms2 ms")
@@ -44,12 +42,12 @@ object EM_Task extends LazyLogging {
       }
 
       val randIndexes = randomlyChooseIndexes(
-        interactions_.size,
+        interactions.size,
         Set[Int](),
-        Math.min(20_000, (interactions_.size * 2) / 4)
+        Math.min(20_000, (interactions.size * 2) / 4)
       )
       val randInteractions: ParVector[ArraySeq[String]] = new ParVector(
-        randIndexes.map(idx => interactions_(idx)).toVector
+        randIndexes.map(idx => interactions(idx)).toVector
       )
       val (tallies2, ms1) = Profile.profile(
         scan(isPairMatch2(0.92), randInteractions)
@@ -63,6 +61,7 @@ object EM_Task extends LazyLogging {
         )
       )
       logger.info(s"$ms1 ms")
+
       runEM(0, lockedU.map(x => MU(0.8, x.u)), gamma)
     } else {
       runEM(0, for { _ <- FIELDS } yield MU(m = 0.8, u = 0.0001), gamma)
@@ -116,7 +115,8 @@ object EM_Task extends LazyLogging {
     }
 
     def matchAsInts(x: String): Array[Int] = {
-      x.slice(1, x.length - 1)
+      val ints = x
+        .slice(1, x.length - 1)
         .split(',')
         .map(y =>
           y.trim() match {
@@ -125,6 +125,7 @@ object EM_Task extends LazyLogging {
             case GAMMA_TAG_MISSING_STR   => GAMMA_TAG_MISSING
           }
         )
+      ints
     }
 
     logger.info(s"iteration: $iterations")
@@ -136,6 +137,7 @@ object EM_Task extends LazyLogging {
       }
       val gamma_ =
         gamma.toVector.map(x => x._1 -> (matchAsInts(x._1), x._2)).toMap
+
       val mapGammaMetrics =
         gamma_.map(x => x._1 -> computeGammaMetrics(x._2._1, x._2._2))
       val tallies = mapGammaMetrics.values
@@ -177,7 +179,7 @@ object EM_Task extends LazyLogging {
 
       val split = isMatch(left, right)
       Tallies(
-        FIELDS.map(field => tallyFieldContribution(split, field.csvCol - 1))
+        FIELDS.map(field => tallyFieldContribution(split, field.idx))
       )
     }
 

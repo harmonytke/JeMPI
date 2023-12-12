@@ -5,7 +5,7 @@ import java.io.{File, PrintWriter}
 private object CustomPatient {
 
   private val classLocation =
-    "../JeMPI_LibShared/src/main/java/org/jembi/jempi/shared/models"
+    "../JeMPI_LibShared/src/main/java/org/jembi/jempi/libshared/models"
   private val packageText = "org.jembi.jempi.shared.models"
   private val customClassNameCustomDemographicData = "CustomDemographicData"
   private val customClassNameCustomUniqueGoldenRecordData =

@@ -13,7 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jembi.jempi.libmpi.MpiGeneralError;
 import org.jembi.jempi.libmpi.MpiServiceError;
-import org.jembi.jempi.shared.models.*;
+import org.jembi.jempi.libshared.models.*;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 
 import static akka.http.javadsl.server.Directives.*;
 import static akka.http.javadsl.server.PathMatchers.segment;
-import static org.jembi.jempi.shared.utils.AppUtils.OBJECT_MAPPER;
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
 public final class Routes {
 

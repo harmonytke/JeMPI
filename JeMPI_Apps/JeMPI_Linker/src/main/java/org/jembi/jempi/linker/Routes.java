@@ -8,14 +8,14 @@ import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.server.Route;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jembi.jempi.libconfig.shared.models.CustomMU;
 import org.jembi.jempi.libmpi.MpiGeneralError;
 import org.jembi.jempi.libmpi.MpiServiceError;
 import org.jembi.jempi.linker.backend.BackEnd;
-import org.jembi.jempi.shared.models.ApiModels;
-import org.jembi.jempi.shared.models.CustomMU;
+import org.jembi.jempi.libshared.models.ApiModels;
 
 import static akka.http.javadsl.server.Directives.*;
-import static org.jembi.jempi.shared.utils.AppUtils.OBJECT_MAPPER;
+import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
 final class Routes {
 

@@ -9,11 +9,10 @@ object Utils extends LazyLogging {
 
   val BASE: Double = 2.0
   val LOG_BASE: Double = Math.log(BASE)
-  val LAMBDA: Double = 1.0 / 2_000_000.0
+  private val LAMBDA: Double = 1.0 / 2_000_000.0
   val LOG_LAMBDA: Double = Math.log(LAMBDA / (1.0 - LAMBDA)) / LOG_BASE
   val JARO_THRESHOLD: Double = 0.92
   val JARO_THRESHOLD_EM: Double = 0.99
-  val COL_REC_NUM = 0
   val MAX_EM_ITERATIONS = 100
   val GAMMA_TAG_MISSING: Int = 0
   val GAMMA_TAG_NOT_EQUAL: Int = 1
@@ -50,20 +49,20 @@ object Utils extends LazyLogging {
     )
   }
 
-  def isPairMatch1(
-      left: ArraySeq[String],
-      right: ArraySeq[String]
-  ): ContributionSplit = {
-    if (
-      left
-        .apply(Utils.COL_REC_NUM)
-        .regionMatches(true, 4, right.apply(Utils.COL_REC_NUM), 4, 10)
-    ) {
-      ContributionSplit(1.0, 0.0)
-    } else {
-      ContributionSplit(0.0, 1.0)
-    }
-  }
+//  def isPairMatch1(
+//      left: ArraySeq[String],
+//      right: ArraySeq[String]
+//  ): ContributionSplit = {
+//    if (
+//      left
+//        .apply(Utils.COL_REC_NUM)
+//        .regionMatches(true, 4, right.apply(Utils.COL_REC_NUM), 4, 10)
+//    ) {
+//      ContributionSplit(1.0, 0.0)
+//    } else {
+//      ContributionSplit(0.0, 1.0)
+//    }
+//  }
 
   def isPairMatch2(
       fieldThreshold: Double

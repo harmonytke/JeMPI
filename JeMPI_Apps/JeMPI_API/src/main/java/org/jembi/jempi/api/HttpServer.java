@@ -17,7 +17,7 @@ import org.apache.logging.log4j.core.config.Configurator;
 import org.jembi.jempi.AppConfig;
 import org.jembi.jempi.libapi.BackEnd;
 import org.jembi.jempi.libapi.Routes;
-import org.jembi.jempi.shared.models.GlobalConstants;
+import org.jembi.jempi.libshared.models.GlobalConstants;
 
 import java.util.concurrent.CompletionStage;
 
