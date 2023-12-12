@@ -23,8 +23,6 @@ import org.jembi.jempi.libshared.serdes.JsonPojoDeserializer;
 import org.jembi.jempi.libshared.serdes.JsonPojoSerializer;
 
 import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 
@@ -32,11 +30,23 @@ import static org.jembi.jempi.libconfig.shared.utils.AppUtils.OBJECT_MAPPER;
 public final class CustomSourceRecordStream {
 
    private static final Logger LOGGER = LogManager.getLogger(CustomSourceRecordStream.class);
-   ExecutorService executorService = Executors.newFixedThreadPool(1);
    private KafkaStreams interactionKafkaStreams = null;
 
    public CustomSourceRecordStream() {
       Configurator.setLevel(this.getClass(), AppConfig.GET_LOG_LEVEL);
+   }
+
+   private static InteractionEnvelop getInteractionEnvelop(
+         final InteractionEnvelop rec,
+         final Interaction interaction) {
+      final var demographicData = interaction.demographicData();
+      return new InteractionEnvelop(rec.contentType(),
+                                    rec.tag(),
+                                    rec.stan(),
+                                    new Interaction(null,
+                                                    rec.interaction().sourceId(),
+                                                    interaction.uniqueInteractionData(),
+                                                    demographicData.clean()));
    }
 
    public void open() {
@@ -54,14 +64,7 @@ public final class CustomSourceRecordStream {
       sourceKStream.map((key, rec) -> {
          if (rec.contentType() == InteractionEnvelop.ContentType.BATCH_INTERACTION) {
             final var interaction = rec.interaction();
-            final var demographicData = interaction.demographicData();
-            final var newEnvelop = new InteractionEnvelop(rec.contentType(),
-                                                          rec.tag(),
-                                                          rec.stan(),
-                                                          new Interaction(null,
-                                                                          rec.interaction().sourceId(),
-                                                                          interaction.uniqueInteractionData(),
-                                                                          demographicData.clean()));
+            final var newEnvelop = getInteractionEnvelop(rec, interaction);
             try {
                LOGGER.debug("{}", OBJECT_MAPPER.writeValueAsString(newEnvelop));
             } catch (JsonProcessingException e) {

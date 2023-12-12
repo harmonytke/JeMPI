@@ -9,7 +9,6 @@ import org.jembi.jempi.libconfig.shared.models.GoldenRecord;
 import java.util.List;
 
 import static org.jembi.jempi.libconfig.dgraph.CustomDgraphConstants.*;
-import static org.jembi.jempi.libconfig.shared.models.CustomDemographicData.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record CustomDgraphGoldenRecord(
@@ -34,14 +33,13 @@ public record CustomDgraphGoldenRecord(
                               new CustomUniqueGoldenRecordData(this.auxDateCreated(),
                                                                this.auxAutoUpdateEnabled(),
                                                                this.auxId()),
-                              new CustomDemographicData(new Field[]{
-                                    new Field(GIVEN_NAME_IDX, FIELD_NAMES[GIVEN_NAME_IDX], this.givenName()),
-                                    new Field(FAMILY_NAME_IDX, FIELD_NAMES[FAMILY_NAME_IDX], this.familyName()),
-                                    new Field(GENDER_IDX, FIELD_NAMES[GENDER_IDX], this.gender()),
-                                    new Field(DOB_IDX, FIELD_NAMES[DOB_IDX], this.dob()),
-                                    new Field(CITY_IDX, FIELD_NAMES[CITY_IDX], this.city()),
-                                    new Field(PHONE_NUMBER_IDX, FIELD_NAMES[PHONE_NUMBER_IDX], this.phoneNumber()),
-                                    new Field(NATIONAL_ID_IDX, FIELD_NAMES[NATIONAL_ID_IDX], this.nationalId())}));
+                              new CustomDemographicData(new String[]{this.givenName(),
+                                                                     this.familyName(),
+                                                                     this.gender(),
+                                                                     this.dob(),
+                                                                     this.city(),
+                                                                     this.phoneNumber(),
+                                                                     this.nationalId()}));
    }
 
 }

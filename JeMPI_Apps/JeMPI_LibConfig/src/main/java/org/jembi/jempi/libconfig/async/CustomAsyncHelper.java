@@ -9,8 +9,6 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.jembi.jempi.libconfig.shared.models.CustomDemographicData.FIELD_NAMES;
-
 public final class CustomAsyncHelper {
 
    private static final int AUX_ID_COL_NUM = 0;
@@ -55,14 +53,13 @@ public final class CustomAsyncHelper {
    }
 
    public static CustomDemographicData customDemographicData(final CSVRecord csvRecord) {
-      return new CustomDemographicData(new CustomDemographicData.Field[]{
-            new CustomDemographicData.Field(0, FIELD_NAMES[0], csvRecord.get(GIVEN_NAME_COL_NUM)),
-            new CustomDemographicData.Field(1, FIELD_NAMES[1], csvRecord.get(FAMILY_NAME_COL_NUM)),
-            new CustomDemographicData.Field(2, FIELD_NAMES[2], csvRecord.get(GENDER_COL_NUM)),
-            new CustomDemographicData.Field(3, FIELD_NAMES[3], csvRecord.get(DOB_COL_NUM)),
-            new CustomDemographicData.Field(4, FIELD_NAMES[4], csvRecord.get(CITY_COL_NUM)),
-            new CustomDemographicData.Field(5, FIELD_NAMES[5], csvRecord.get(PHONE_NUMBER_COL_NUM)),
-            new CustomDemographicData.Field(6, FIELD_NAMES[6], csvRecord.get(NATIONAL_ID_COL_NUM))});
+      return new CustomDemographicData(new String[]{csvRecord.get(GIVEN_NAME_COL_NUM),
+                                                    csvRecord.get(FAMILY_NAME_COL_NUM),
+                                                    csvRecord.get(GENDER_COL_NUM),
+                                                    csvRecord.get(DOB_COL_NUM),
+                                                    csvRecord.get(CITY_COL_NUM),
+                                                    csvRecord.get(PHONE_NUMBER_COL_NUM),
+                                                    csvRecord.get(NATIONAL_ID_COL_NUM)});
    }
 
    public static CustomSourceId customSourceId(final CSVRecord csvRecord) {

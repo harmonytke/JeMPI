@@ -1,6 +1,7 @@
 package org.jembi.jempi.libconfig.shared.models;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class CustomDemographicData {
 
@@ -14,12 +15,14 @@ public class CustomDemographicData {
    public static final String[] FIELD_NAMES = {"givenName", "familyName", "gender", "dob", "city", "phoneNumber", "nationalId"};
    public final Field[] fields;
 
-   CustomDemographicData() {
-      fields = new Field[7];
+   public CustomDemographicData(final String[] values) {
+      fields = IntStream.range(0, values.length)
+                        .boxed()
+                        .map(i -> new Field(i, FIELD_NAMES[i], values[i]))
+                        .toArray(Field[]::new);
    }
 
-   public CustomDemographicData(
-         final Field[] fields) {
+   public CustomDemographicData(final Field[] fields) {
       this.fields = fields;
    }
 
@@ -33,7 +36,6 @@ public class CustomDemographicData {
    public record Field(
          int idx,
          String name,
-
          String value) {
    }
 
