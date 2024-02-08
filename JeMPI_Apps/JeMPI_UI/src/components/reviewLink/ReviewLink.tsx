@@ -9,10 +9,10 @@ import {
 } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useLinkReview } from 'hooks/useLinkReview'
+import { useLinkReview } from '../../hooks/useLinkReview'
 import { useSnackbar } from 'notistack'
 import { useState } from 'react'
-import { CustomSearchQuery, SearchQuery } from 'types/SimpleSearch'
+import { CustomSearchQuery, SearchQuery } from '../../types/SimpleSearch'
 import {
   AnyRecord,
   GoldenRecord,
@@ -25,14 +25,15 @@ import Button from '../shared/Button'
 import PageHeader from '../shell/PageHeader'
 import SearchDialog from './SearchDialog'
 import CustomDataGrid from './CustomDataGrid'
-import useRelink from 'hooks/useRelink'
+import useRelink from '../../hooks/useRelink'
 import LinkRecordsDialog from './LinkRecordsDialog'
 import CloseNotificationDialog from './CloseNotificationDialog'
 import UnlinkingDialog from './UnlinkingDialog'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useConfig } from 'hooks/useConfig'
-import { NotificationRequest } from 'types/BackendResponse'
-import { RESOLUTION_TYPES } from 'utils/constants'
+import { useConfig } from '../../hooks/useConfig'
+import { NotificationRequest } from '../../types/BackendResponse'
+import { RESOLUTION_TYPES } from '../../utils/constants'
+import React from 'react'
 
 const getRowClassName = (type?: string) => {
   switch (type) {
@@ -99,7 +100,7 @@ const ReviewLink = () => {
     )
   }
 
-  const createGoldenRecord = (id: string, resolutionState:string) => {
+  const createGoldenRecord = (id: string, resolutionState: string) => {
     createNewGoldenRecord.mutate(
       {
         notificationId: payload?.notificationId,
@@ -107,7 +108,9 @@ const ReviewLink = () => {
         interactionId: payload.patient_id || '',
         currentGoldenId: goldenRecord ? goldenRecord.uid : '',
         resolutionState: resolutionState,
-        currentCandidates: payload?.notificationId ? (candidateGoldenRecords || []).map(c => c.uid) : [],
+        currentCandidates: payload?.notificationId
+          ? (candidateGoldenRecords || []).map(c => c.uid)
+          : [],
         newGoldenId: id,
         score: payload?.score
       },
@@ -143,7 +146,9 @@ const ReviewLink = () => {
           interactionId: payload.patient_id,
           currentGoldenId: goldenRecord.uid,
           resolutionState: resolutionState,
-          currentCandidates: payload?.notificationId ? (candidateGoldenRecords || []).map(c => c.uid) : [],
+          currentCandidates: payload?.notificationId
+            ? (candidateGoldenRecords || []).map(c => c.uid)
+            : [],
           newGoldenId: id,
           score: payload?.score
         },
@@ -332,18 +337,24 @@ const ReviewLink = () => {
         <UnlinkingDialog
           isOpen={isNewGoldenRecordDialogOpen}
           onClose={() => handleModalCancel()}
-          onConfirm={() => createGoldenRecord(canditateUID, RESOLUTION_TYPES.RELINKED_NEW)}
+          onConfirm={() =>
+            createGoldenRecord(canditateUID, RESOLUTION_TYPES.RELINKED_NEW)
+          }
         />
         <CloseNotificationDialog
           isOpen={isAcceptLinkDialogOpen}
           onClose={handleModalCancel}
-          onConfirm={() => linkToCandidateRecord(goldenRecord?.uid, RESOLUTION_TYPES.APPROVED)}
+          onConfirm={() =>
+            linkToCandidateRecord(goldenRecord?.uid, RESOLUTION_TYPES.APPROVED)
+          }
         />
         <LinkRecordsDialog
           isOpen={isLinkRecordDialogOpen}
           data={tableData}
           onClose={handleModalCancel}
-          onConfirm={() => linkToCandidateRecord(canditateUID, RESOLUTION_TYPES.RELINKED)}
+          onConfirm={() =>
+            linkToCandidateRecord(canditateUID, RESOLUTION_TYPES.RELINKED)
+          }
         />
       </Stack>
     </Container>

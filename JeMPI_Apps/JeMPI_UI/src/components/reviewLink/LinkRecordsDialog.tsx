@@ -6,8 +6,9 @@ import {
   DialogTitle,
   Typography
 } from '@mui/material'
-import { AnyRecord } from 'types/PatientRecord'
+import { AnyRecord } from '../../types/PatientRecord'
 import DataGrid from './CustomDataGrid'
+import React from 'react'
 
 const LinkRecordsDialog: React.FC<{
   isOpen: boolean

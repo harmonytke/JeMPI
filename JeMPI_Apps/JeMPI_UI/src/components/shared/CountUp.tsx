@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 
 type CountUpProps = {
   end: number

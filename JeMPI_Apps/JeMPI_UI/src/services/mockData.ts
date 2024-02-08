@@ -1,4 +1,4 @@
-import { AuditTrail } from 'types/AuditTrail'
+import { AuditTrail } from '../types/AuditTrail'
 import Notification, { NotificationState } from '../types/Notification'
 import { PatientRecord } from '../types/PatientRecord'
 import { User } from '../types/User'

@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material'
-import { FC } from 'react'
+import React, { FC } from 'react'
 
 const TableCellInput: FC<{
   value: string | Date | undefined

@@ -3,8 +3,8 @@ import { GridColDef } from '@mui/x-data-grid'
 import React, { useState } from 'react'
 import SelectMatchLevelMenu from './SelectMatchLevelMenu'
 import TableCellInput from './TableCellInput'
-import { useAppConfig } from 'hooks/useAppConfig'
-import { SearchParameter } from 'types/SimpleSearch'
+import { useAppConfig } from '../../hooks/useAppConfig'
+import { SearchParameter } from '../../types/SimpleSearch'
 
 interface SearchTableFormProps {
   defaultParameters?: SearchParameter[]

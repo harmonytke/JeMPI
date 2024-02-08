@@ -1,6 +1,7 @@
+import React from 'react'
 import { Box, Button, Paper, TableContainer } from '@mui/material'
 import { FC, useState } from 'react'
-import { SearchParameter } from 'types/SimpleSearch'
+import { SearchParameter } from '../../types/SimpleSearch'
 import SearchFormTable from './SearchFormTable'
 
 export const FilterTable: FC<{

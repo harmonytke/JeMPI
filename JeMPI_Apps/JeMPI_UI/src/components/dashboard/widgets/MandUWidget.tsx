@@ -1,3 +1,4 @@
+import React from 'react'
 import { Box } from '@mui/material'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -19,9 +20,7 @@ const rows = [
   createData('National Id ', 305, 3.7),
   createData('City ', 305, 3.7)
 ]
-function MandU({data, ...rest}: any) {
-
-   
+function MandU({ data, ...rest }: any) {
   return (
     <Box component={'fieldset'}>
       <legend>M & U Values</legend>
@@ -35,17 +34,20 @@ function MandU({data, ...rest}: any) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data && Object.entries(data).map(([fieldId, m_and_u]) => (
-              <TableRow key={fieldId}>
-                <TableCell component="th" scope="row">
-                  {fieldId}
-                </TableCell>
-                <TableCell align="center" scope="row">
-                  {parseFloat((m_and_u as any).m).toFixed(7)}
-                </TableCell>
-                <TableCell align="center">{parseFloat((m_and_u as any).u).toFixed(7)}</TableCell>
-              </TableRow>
-            ))}
+            {data &&
+              Object.entries(data).map(([fieldId, m_and_u]) => (
+                <TableRow key={fieldId}>
+                  <TableCell component="th" scope="row">
+                    {fieldId}
+                  </TableCell>
+                  <TableCell align="center" scope="row">
+                    {parseFloat((m_and_u as any).m).toFixed(7)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {parseFloat((m_and_u as any).u).toFixed(7)}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -19,7 +19,7 @@ import {
 } from '../../types/SimpleSearch'
 import PageHeader from '../shell/PageHeader'
 import { useLocation } from 'react-router-dom'
-import { useConfig } from 'hooks/useConfig'
+import { useConfig } from '../../hooks/useConfig'
 
 type SearchResultProps = {
   isGoldenRecord: boolean

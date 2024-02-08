@@ -2,12 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useSnackbar } from 'notistack'
 import { useMemo } from 'react'
-import { AnyRecord, GoldenRecord } from 'types/PatientRecord'
+import { AnyRecord, GoldenRecord } from '../types/PatientRecord'
 import {
   ApiSearchResult,
   CustomSearchQuery,
   SearchQuery
-} from 'types/SimpleSearch'
+} from '../types/SimpleSearch'
 import { useConfig } from './useConfig'
 
 interface ReviewLinkParams {

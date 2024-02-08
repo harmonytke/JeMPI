@@ -2,18 +2,18 @@ import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import React from 'react'
 import { useConfig } from './useConfig'
-import { DashboardData } from 'types/BackendResponse'
+import { DashboardData } from '../types/BackendResponse'
 import { useSnackbar } from 'notistack'
 
 export interface DashboadDataContextValue {
-    data: DashboardData | undefined,
-    isLoading: boolean,
-    isError: boolean,
-    isReady: boolean
+  data: DashboardData | undefined
+  isLoading: boolean
+  isError: boolean
+  isReady: boolean
 }
-    
 
-const DashboardDataContext = React.createContext<DashboadDataContextValue | null>(null)
+const DashboardDataContext =
+  React.createContext<DashboadDataContextValue | null>(null)
 DashboardDataContext.displayName = 'DashboardDataContext'
 
 export interface DashboaedDataProviderProps {
@@ -23,9 +23,8 @@ export interface DashboaedDataProviderProps {
 export const DashboardDataProvider = ({
   children
 }: DashboaedDataProviderProps): JSX.Element => {
-
-    const { apiClient, config } = useConfig()
-    const { enqueueSnackbar } = useSnackbar()
+  const { apiClient, config } = useConfig()
+  const { enqueueSnackbar } = useSnackbar()
 
   const {
     data: dashboardData,
@@ -34,20 +33,20 @@ export const DashboardDataProvider = ({
     isError
   } = useQuery<DashboardData, AxiosError>({
     queryKey: ['dashboardData'],
-    queryFn: async () =>  apiClient.getDashboardData().then(r => {
-            r.dashboardData = JSON.parse(r.dashboardData)
-            return r
-        }),
+    queryFn: async () =>
+      apiClient.getDashboardData().then(r => {
+        r.dashboardData = JSON.parse(r.dashboardData)
+        return r
+      }),
     refetchOnWindowFocus: false,
     // TODO: Consider updating later
-    refetchInterval: 3000,
+    refetchInterval: 3000
   })
-
 
   if (isError) {
     enqueueSnackbar(`Unable to get dashboard data`, {
-        variant: 'error'
-      })
+      variant: 'error'
+    })
     console.error(dashboardDataError)
   }
 

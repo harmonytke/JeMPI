@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   AppBar,
   Box,
@@ -17,7 +17,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile'
 import JembiLogo from './JembiLogo'
 import NavigationMenu from './NavigationMenu'
 import { Link } from 'react-router-dom'
-import { useConfig } from 'hooks/useConfig'
+import { useConfig } from '../../hooks/useConfig'
 
 const LabeledIconBox = ({
   icon,

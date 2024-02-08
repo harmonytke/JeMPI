@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useSnackbar } from 'notistack'
 import { useConfig } from './useConfig'
-import { LinkRequest } from 'types/BackendResponse'
+import { LinkRequest } from '../types/BackendResponse'
 
 const useRelink = () => {
   const { enqueueSnackbar } = useSnackbar()

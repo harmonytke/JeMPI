@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Close as CloseIcon,
   UploadFile as UploadFileIcon
@@ -5,7 +6,7 @@ import {
 import { Avatar, Box, Grid, LinearProgress, Typography } from '@mui/material'
 import { FC } from 'react'
 import { FileObj, UploadStatus } from '../../types/FileUpload'
-import { formatBytesSize } from 'utils/formatters'
+import { formatBytesSize } from '../../utils/formatters'
 
 interface FileObjProps {
   fileObj: FileObj

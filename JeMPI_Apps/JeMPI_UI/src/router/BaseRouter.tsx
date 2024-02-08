@@ -1,17 +1,18 @@
-import BrowseRecords from 'components/browseRecords/BrowseRecords'
-import NotFound from 'components/error/NotFound'
-import Import from 'components/import/Import'
-import RecordDetails from 'components/recordDetails/RecordDetails'
-import NotificationWorklist from 'components/notificationWorklist/NotificationWorklist'
-import ReviewLink from 'components/reviewLink/ReviewLink'
+import BrowseRecords from '../components/browseRecords/BrowseRecords'
+import NotFound from '../components/error/NotFound'
+import Import from '../components/import/Import'
+import RecordDetails from '../components/recordDetails/RecordDetails'
+import NotificationWorklist from '../components/notificationWorklist/NotificationWorklist'
+import ReviewLink from '../components/reviewLink/ReviewLink'
 import { createBrowserRouter } from 'react-router-dom'
-import Root from 'components/shell/Root'
-import CustomSearch from 'components/customSearch/CustomSearch'
-import SimpleSearch from 'components/search/SimpleSearch'
-import SearchResult from 'components/searchResult/SearchResult'
-import Login from 'components/user/Login'
-import Dashboard from 'components/dashboard/Dashboard'
-import { DashboardDataProvider } from 'hooks/useDashboardData'
+import Root from '../components/shell/Root'
+import CustomSearch from '../components/customSearch/CustomSearch'
+import SimpleSearch from '../components/search/SimpleSearch'
+import SearchResult from '../components/searchResult/SearchResult'
+import Login from '../components/user/Login'
+import Dashboard from '../components/dashboard/Dashboard'
+import { DashboardDataProvider } from '../hooks/useDashboardData'
+import React from 'react'
 
 const baseRouter = createBrowserRouter([
   { path: 'login', element: <Login /> },
@@ -21,9 +22,11 @@ const baseRouter = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <DashboardDataProvider>
-                    <Dashboard />
-                  </DashboardDataProvider> 
+        element: (
+          <DashboardDataProvider>
+            <Dashboard />
+          </DashboardDataProvider>
+        )
       },
       {
         path: 'browse-records',

@@ -1,5 +1,5 @@
-import { PatientRecord } from 'types/PatientRecord'
-import { SearchParameter } from 'types/SimpleSearch'
+import { PatientRecord } from '../types/PatientRecord'
+import { SearchParameter } from '../types/SimpleSearch'
 
 export const levenshtein = (a: string, b: string) => {
   if (!a.length) return b.length

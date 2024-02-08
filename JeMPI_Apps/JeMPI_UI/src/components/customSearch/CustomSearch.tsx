@@ -1,8 +1,8 @@
+import React, { useState } from 'react'
 import { MoreHorizOutlined } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, Card, Container, Grid, Stack } from '@mui/material'
 import Divider from '@mui/material/Divider'
-import { useState } from 'react'
 import {
   CustomSearchQuery,
   FlagLabel,
@@ -13,7 +13,7 @@ import PageHeader from '../shell/PageHeader'
 import CustomSearchForm from './CustomSearchForm'
 import CustomSearchHeader from './CustomSearchHeader'
 import { Link, useNavigate } from 'react-router-dom'
-import { encodeQueryString } from 'utils/helpers'
+import { encodeQueryString } from '../../utils/helpers'
 
 const CustomSearch: React.FC = () => {
   const navigate = useNavigate()

@@ -7,7 +7,7 @@ import {
   Typography
 } from '@mui/material'
 import React from 'react'
-import { SourceId } from 'types/PatientRecord'
+import { SourceId } from '../../types/PatientRecord'
 
 const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />

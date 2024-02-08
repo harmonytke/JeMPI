@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem'
 import * as React from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
-import { useConfig } from 'hooks/useConfig'
+import { useConfig } from '../../hooks/useConfig'
 
 const NavigationMenu: React.FC = () => {
   const { currentUser, logout } = useAuth()

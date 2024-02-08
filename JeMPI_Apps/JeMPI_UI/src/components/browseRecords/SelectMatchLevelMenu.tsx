@@ -5,7 +5,7 @@ import {
   Select,
   SelectChangeEvent
 } from '@mui/material'
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 
 interface SelectMatchLevelMenuProps {
   onChange: (value: string) => void

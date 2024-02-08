@@ -4,7 +4,7 @@ import React, { useMemo } from 'react'
 import Loading from '../components/common/Loading'
 import ApiErrorMessage from '../components/error/ApiErrorMessage'
 import { ApiClient } from '../services/ApiClient'
-import getConfig, { Config } from 'config'
+import getConfig, { Config } from '../config'
 import { getApiClient } from '../services/ApiClient'
 
 export interface ConfigContextValue {

@@ -1,10 +1,11 @@
-import AutoSubmitForm from 'components/shared/AutoSubmitForm'
+import React from 'react'
+import AutoSubmitForm from '../../components/shared/AutoSubmitForm'
 import dayjs from 'dayjs'
 import { FieldArray, Formik } from 'formik'
-import { useAppConfig } from 'hooks/useAppConfig'
+import { useAppConfig } from '../../hooks/useAppConfig'
 import { FC } from 'react'
-import { SearchQuery } from 'types/SimpleSearch'
-import { PAGINATION_LIMIT } from 'utils/constants'
+import { SearchQuery } from '../../types/SimpleSearch'
+import { PAGINATION_LIMIT } from '../../utils/constants'
 import SearchRow from './SearchRow'
 
 const SimpleSearchForm: FC<{

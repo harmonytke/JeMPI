@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material'
-import ToggleButtons from 'components/search/ToggleButtons'
-import { useState } from 'react'
-import { SearchType } from 'types/ReviewLink'
-import { ToggleButtonOptions } from 'types/SimpleSearch'
+import ToggleButtons from '../../components/search/ToggleButtons'
+import React, { useState } from 'react'
+import { SearchType } from '../../types/ReviewLink'
+import { ToggleButtonOptions } from '../../types/SimpleSearch'
 
 interface SearchTypeToggleProps {
   options: ToggleButtonOptions[]

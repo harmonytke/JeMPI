@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Accordion,
   AccordionDetails,
@@ -17,26 +18,26 @@ import {
   GridRenderCellParams,
   gridClasses
 } from '@mui/x-data-grid'
-import ApiErrorMessage from 'components/error/ApiErrorMessage'
-import { useAppConfig } from 'hooks/useAppConfig'
+import ApiErrorMessage from '../../components/error/ApiErrorMessage'
+import { useAppConfig } from '../../hooks/useAppConfig'
 import {
   AnyRecord,
   GoldenRecord,
   PatientRecord,
   ValueOf
-} from 'types/PatientRecord'
+} from '../../types/PatientRecord'
 import { FilterTable } from './FilterTable'
 import {
   ApiSearchResult,
   FilterQuery,
   SearchParameter
-} from 'types/SimpleSearch'
+} from '../../types/SimpleSearch'
 import { useEffect, useMemo, useState } from 'react'
-import { isPatientCorresponding } from 'hooks/useSearch'
+import { isPatientCorresponding } from '../../hooks/useSearch'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import PageHeader from 'components/shell/PageHeader'
+import PageHeader from '../../components/shell/PageHeader'
 import {
   LocalizationProvider,
   DesktopDatePicker,
@@ -44,11 +45,11 @@ import {
 } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs'
-import getCellComponent from 'components/shared/getCellComponent'
+import getCellComponent from '../../components/shared/getCellComponent'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Search } from '@mui/icons-material'
-import { useConfig } from 'hooks/useConfig'
-import CustomPagination from 'components/shared/CustomDataGridPagination'
+import { useConfig } from '../../hooks/useConfig'
+import CustomPagination from '../../components/shared/CustomDataGridPagination'
 
 // TODO: Later -  We can update this at a later stage, such the field configuration info can contain the getAlignment, since this can be dynamic
 const getAlignment = (fieldName: string) =>
@@ -74,7 +75,8 @@ const Records = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [isFetchingInteractions, setIsFetchingInteractions] = useState<boolean>(
     searchParams.get('isFetchingInteractions')
-      ? JSON.parse(searchParams.get('isFetchingInteractions') as string) == "true"
+      ? JSON.parse(searchParams.get('isFetchingInteractions') as string) ==
+          'true'
       : false
   )
 

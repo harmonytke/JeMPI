@@ -1,5 +1,5 @@
 import { GridColDef } from '@mui/x-data-grid'
-import { AnyRecord } from 'types/PatientRecord'
+import { AnyRecord } from '../types/PatientRecord'
 
 interface ValidationObject {
   regex?: string

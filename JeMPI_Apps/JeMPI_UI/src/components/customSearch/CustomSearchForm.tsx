@@ -1,9 +1,10 @@
+import React from 'react'
 import { Grid } from '@mui/material'
-import AutoSubmitForm from 'components/shared/AutoSubmitForm'
+import AutoSubmitForm from '../../components/shared/AutoSubmitForm'
 import { FieldArray, Formik } from 'formik'
 import { FC } from 'react'
-import { CustomSearchQuery, SimpleSearchQuery } from 'types/SimpleSearch'
-import { INITIAL_SEARCH_PARAMETER, INITIAL_VALUES } from 'utils/constants'
+import { CustomSearchQuery, SimpleSearchQuery } from '../../types/SimpleSearch'
+import { INITIAL_SEARCH_PARAMETER, INITIAL_VALUES } from '../../utils/constants'
 import AddFieldOrGroupButton from './AddFieldOrGroupButton'
 import FieldGroup from './FieldGroup'
 

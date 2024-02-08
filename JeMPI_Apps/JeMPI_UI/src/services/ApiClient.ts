@@ -20,15 +20,15 @@ import {
   LinkRequest,
   GoldenRecordCandidatesResponse,
   DashboardData
-} from 'types/BackendResponse'
+} from '../types/BackendResponse'
 import {
   GoldenRecord,
   AnyRecord,
   DemographicData,
   PatientRecord
-} from 'types/PatientRecord'
-import { Notifications } from 'types/Notification'
-import { Config } from 'config'
+} from '../types/PatientRecord'
+import { Notifications } from '../types/Notification'
+import { Config } from '../config'
 import axios from 'axios'
 import { getCookie } from '../utils/misc'
 
@@ -182,12 +182,18 @@ export class ApiClient {
   }
 
   async newGoldenRecord(request: LinkRequest) {
-    const { data } = await this.client.post<LinkRequest>(ROUTES.POST_IID_NEW_GID_LINK, request)
+    const { data } = await this.client.post<LinkRequest>(
+      ROUTES.POST_IID_NEW_GID_LINK,
+      request
+    )
     return data
   }
 
   async linkRecord(linkRequest: LinkRequest) {
-    const { data } = await this.client.post<LinkRequest>(ROUTES.POST_IID_GID_LINK, linkRequest)
+    const { data } = await this.client.post<LinkRequest>(
+      ROUTES.POST_IID_GID_LINK,
+      linkRequest
+    )
     return data
   }
 

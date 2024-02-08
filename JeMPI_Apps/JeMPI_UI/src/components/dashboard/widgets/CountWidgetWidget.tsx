@@ -1,5 +1,5 @@
-import { Box, Avatar, Typography } from '@mui/material'
 import React from 'react'
+import { Box, Avatar, Typography } from '@mui/material'
 
 type countWidgetType = {
   label: string
@@ -50,14 +50,8 @@ function CountWidget({
             justifyContent: 'space-between'
           }}
         >
-          <Typography variant="h4">
-            {value}
-          </Typography>
-          {!!secondValue && (
-            <Typography variant="h4">
-              {secondValue}
-            </Typography>
-          )}
+          <Typography variant="h4">{value}</Typography>
+          {!!secondValue && <Typography variant="h4">{secondValue}</Typography>}
         </Box>
       </Box>
     </Box>

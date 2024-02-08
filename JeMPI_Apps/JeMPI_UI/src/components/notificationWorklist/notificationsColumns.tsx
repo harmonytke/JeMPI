@@ -1,12 +1,13 @@
+import React from 'react'
 import {
   GridColDef,
   GridRenderCellParams,
   GridValueGetterParams,
   GridValueFormatterParams
 } from '@mui/x-data-grid'
-import getCellComponent from 'components/shared/getCellComponent'
+import getCellComponent from '../../components/shared/getCellComponent'
 import NotificationState from './NotificationState'
-import { formatNumber, formatName } from 'utils/formatters'
+import { formatNumber, formatName } from '../../utils/formatters'
 
 const NOTIFICATIONS_COLUMNS: GridColDef[] = [
   {

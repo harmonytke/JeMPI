@@ -1,3 +1,4 @@
+import React from 'react'
 import { UploadFile as UploadFileIcon } from '@mui/icons-material'
 import {
   Avatar,
@@ -24,8 +25,8 @@ import {
 } from '../../types/FileUpload'
 import Button from '../shared/Button'
 import UploadFileListItem from './UploadFileListItem'
-import { formatBytesSize, megabytesToBytes } from 'utils/formatters'
-import { useConfig } from 'hooks/useConfig'
+import { formatBytesSize, megabytesToBytes } from '../../utils/formatters'
+import { useConfig } from '../../hooks/useConfig'
 import { useFormik } from 'formik'
 
 const DropZone: FC = () => {

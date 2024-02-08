@@ -1,6 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Grid, IconButton, SelectChangeEvent, Typography } from '@mui/material'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useAppConfig } from '../../hooks/useAppConfig'
 import { DisplayField } from '../../types/Fields'
 import { SearchParameter } from '../../types/SimpleSearch'

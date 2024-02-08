@@ -1,3 +1,4 @@
+import React from 'react'
 import { SxProps, TextField, Theme } from '@mui/material'
 
 interface SearchTextInputProps {

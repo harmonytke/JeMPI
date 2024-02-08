@@ -1,6 +1,7 @@
+import React from 'react'
 import { Box, Divider, Grid, Typography } from '@mui/material'
 
-const ConfusionMatrix = ({data, ...rest}: any) => {
+const ConfusionMatrix = ({ data, ...rest }: any) => {
   return (
     <>
       <Grid container padding={1} minHeight={'450px'}>
@@ -18,7 +19,9 @@ const ConfusionMatrix = ({data, ...rest}: any) => {
         >
           <Box sx={{ padding: '1rem' }}>
             <Typography variant="h5">False Negatives</Typography>
-            <Typography variant="h3">{data && data.tptnMatrix.falseNegative}</Typography>
+            <Typography variant="h3">
+              {data && data.tptnMatrix.falseNegative}
+            </Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'end' }}>
             <Box
@@ -55,7 +58,9 @@ const ConfusionMatrix = ({data, ...rest}: any) => {
         >
           <Box sx={{ padding: '1rem' }}>
             <Typography variant="h5">True Negatives</Typography>
-            <Typography variant="h3">{data && data.tptnMatrix.trueNegative}</Typography>
+            <Typography variant="h3">
+              {data && data.tptnMatrix.trueNegative}
+            </Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'start' }}>
             <Box
@@ -97,7 +102,11 @@ const ConfusionMatrix = ({data, ...rest}: any) => {
                   ></Box>
                 </Grid>
                 <Grid item xs={6} textAlign={'center'}>
-                  {data && `${data.tptnMatrix.truePositive} / ${data.tptnMatrix.truePositive + data.tptnMatrix.falsePositive} =`}
+                  {data &&
+                    `${data.tptnMatrix.truePositive} / ${
+                      data.tptnMatrix.truePositive +
+                      data.tptnMatrix.falsePositive
+                    } =`}
                 </Grid>
                 <Grid
                   item
@@ -113,7 +122,12 @@ const ConfusionMatrix = ({data, ...rest}: any) => {
                   <Divider component={'button'} sx={{ width: '40px' }} />
                 </Grid>
                 <Grid item xs={6} textAlign={'center'}>
-                  {data && (data.tptnMatrix.truePositive / (data.tptnMatrix.truePositive + data.tptnMatrix.falsePositive)).toFixed(5)}
+                  {data &&
+                    (
+                      data.tptnMatrix.truePositive /
+                      (data.tptnMatrix.truePositive +
+                        data.tptnMatrix.falsePositive)
+                    ).toFixed(5)}
                 </Grid>
                 <Grid item xs={6} textAlign={'center'}>
                   <Box
@@ -145,7 +159,11 @@ const ConfusionMatrix = ({data, ...rest}: any) => {
                   ></Box>
                 </Grid>
                 <Grid item xs={6} textAlign={'center'}>
-                {data && `${data.tptnMatrix.truePositive} / ${data.tptnMatrix.truePositive + data.tptnMatrix.falseNegative} =`}
+                  {data &&
+                    `${data.tptnMatrix.truePositive} / ${
+                      data.tptnMatrix.truePositive +
+                      data.tptnMatrix.falseNegative
+                    } =`}
                 </Grid>
                 <Grid
                   item
@@ -161,7 +179,12 @@ const ConfusionMatrix = ({data, ...rest}: any) => {
                   <Divider component={'button'} sx={{ width: '40px' }} />
                 </Grid>
                 <Grid item xs={6} textAlign={'center'}>
-                  {data && (data.tptnMatrix.truePositive / (data.tptnMatrix.truePositive + data.tptnMatrix.falseNegative)).toFixed(5) }
+                  {data &&
+                    (
+                      data.tptnMatrix.truePositive /
+                      (data.tptnMatrix.truePositive +
+                        data.tptnMatrix.falseNegative)
+                    ).toFixed(5)}
                 </Grid>
                 <Grid item xs={6} textAlign={'center'}>
                   <Box

@@ -1,16 +1,15 @@
 import './App.css'
-
+import React from 'react'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import baseTheme from './themes/baseTheme'
-import baseRouter from 'router/BaseRouter'
+import baseRouter from './router/BaseRouter'
 import { RouterProvider } from 'react-router-dom'
-import { ConfigProvider } from 'hooks/useConfig'
+import { ConfigProvider } from './hooks/useConfig'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import ScrollBackButtons from 'components/shared/ScrollBackButtons'
-import { AuthProvider } from 'hooks/useAuth'
+import ScrollBackButtons from './components/shared/ScrollBackButtons'
+import { AuthProvider } from './hooks/useAuth'
 import { SnackbarProvider } from 'notistack'
-import React from 'react'
 
 const queryClient = new QueryClient({
   defaultOptions: {

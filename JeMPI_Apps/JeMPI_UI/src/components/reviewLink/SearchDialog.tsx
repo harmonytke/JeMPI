@@ -7,18 +7,18 @@ import {
   DialogTitle,
   Divider
 } from '@mui/material'
-import CustomSearchForm from 'components/customSearch/CustomSearchForm'
-import { FC, useState } from 'react'
-import { SearchType } from 'types/ReviewLink'
+import CustomSearchForm from '../../components/customSearch/CustomSearchForm'
+import React, { FC, useState } from 'react'
+import { SearchType } from '../../types/ReviewLink'
 import {
   CustomSearchQuery,
   SearchQuery,
   ToggleButtonOptions
-} from 'types/SimpleSearch'
+} from '../../types/SimpleSearch'
 import SearchTypeToggle from './SearchTypeToggle'
 
-import SearchFormTable from 'components/browseRecords/SearchFormTable'
-import { PAGINATION_LIMIT } from 'utils/constants'
+import SearchFormTable from '../../components/browseRecords/SearchFormTable'
+import { PAGINATION_LIMIT } from '../../utils/constants'
 
 const options: ToggleButtonOptions[] = [
   { value: 0, label: SearchType.CUSTOM_SEARCH },

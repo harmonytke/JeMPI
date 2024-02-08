@@ -1,3 +1,4 @@
+import React from 'react'
 import { People } from '@mui/icons-material'
 import {
   Box,
@@ -11,8 +12,8 @@ import {
 import { DataGrid, GridFilterModel, gridClasses } from '@mui/x-data-grid'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import ApiErrorMessage from 'components/error/ApiErrorMessage'
-import NotFound from 'components/error/NotFound'
+import ApiErrorMessage from '../../components/error/ApiErrorMessage'
+import NotFound from '../../components/error/NotFound'
 import Notification, {
   NotificationState,
   Notifications
@@ -23,11 +24,11 @@ import dayjs, { Dayjs } from 'dayjs'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import NOTIFICATIONS_COLUMNS from './notificationsColumns'
 import { useNavigate } from 'react-router-dom'
-import { useConfig } from 'hooks/useConfig'
-import CustomPagination from 'components/shared/CustomDataGridPagination'
+import { useConfig } from '../../hooks/useConfig'
+import CustomPagination from '../../components/shared/CustomDataGridPagination'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import MultiSelect from 'components/shared/MultiSelect'
+import MultiSelect from '../../components/shared/MultiSelect'
 
 const NotificationWorklist = () => {
   const navigate = useNavigate()

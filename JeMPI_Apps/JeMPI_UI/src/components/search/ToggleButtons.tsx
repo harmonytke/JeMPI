@@ -1,5 +1,5 @@
 import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { ToggleButtonOptions } from '../../types/SimpleSearch'
 
 export const triggerInputChange = (node: HTMLInputElement, value = '') => {

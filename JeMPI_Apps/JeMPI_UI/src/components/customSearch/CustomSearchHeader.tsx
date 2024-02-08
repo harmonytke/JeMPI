@@ -1,3 +1,4 @@
+import React from 'react'
 import { Box, Link, Stack, Typography } from '@mui/material'
 
 const CustomSearchHeader = () => {

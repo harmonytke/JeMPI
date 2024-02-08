@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ToggleButtonOptions } from '../../types/SimpleSearch'
 import ToggleButtons from './ToggleButtons'
 

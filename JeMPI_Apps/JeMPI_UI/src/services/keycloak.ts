@@ -1,4 +1,4 @@
-import { Config } from 'config'
+import { Config } from '../config'
 import Keycloak from 'keycloak-js'
 
 export default function getKeycloak(config: Config) {

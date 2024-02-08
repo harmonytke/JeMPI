@@ -8,7 +8,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Chip from '@mui/material/Chip'
 import { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
-import { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8

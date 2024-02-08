@@ -2,7 +2,7 @@ import { MoreHorizOutlined } from '@mui/icons-material'
 import SearchIcon from '@mui/icons-material/Search'
 import { Card, Container, Grid } from '@mui/material'
 import Divider from '@mui/material/Divider'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   FlagLabel,
   SearchQuery,

@@ -16,23 +16,27 @@ import {
 } from '@mui/x-data-grid'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import Loading from 'components/common/Loading'
-import ApiErrorMessage from 'components/error/ApiErrorMessage'
-import NotFound from 'components/error/NotFound'
-import ConfirmEditingDialog from 'components/recordDetails/ConfirmEditingDialog'
+import Loading from '../../components/common/Loading'
+import ApiErrorMessage from '../../components/error/ApiErrorMessage'
+import NotFound from '../../components/error/NotFound'
+import ConfirmEditingDialog from '../../components/recordDetails/ConfirmEditingDialog'
 import DataGridCellInput from './DataGridCellInput'
-import PageHeader from 'components/shell/PageHeader'
-import { useAppConfig } from 'hooks/useAppConfig'
+import PageHeader from '../../components/shell/PageHeader'
+import { useAppConfig } from '../../hooks/useAppConfig'
 import { useSnackbar } from 'notistack'
-import { useState } from 'react'
-import { DisplayField, FieldChangeReq, FieldType } from 'types/Fields'
-import { PatientRecord, GoldenRecord, AnyRecord } from 'types/PatientRecord'
-import { sortColumns } from 'utils/helpers'
-import getCellComponent from 'components/shared/getCellComponent'
-import { AUDIT_TRAIL_COLUMNS } from 'utils/constants'
-import { AuditTrail } from 'types/AuditTrail'
+import React, { useState } from 'react'
+import { DisplayField, FieldChangeReq, FieldType } from '../../types/Fields'
+import {
+  PatientRecord,
+  GoldenRecord,
+  AnyRecord
+} from '../../types/PatientRecord'
+import { sortColumns } from '../../utils/helpers'
+import getCellComponent from '../../components/shared/getCellComponent'
+import { AUDIT_TRAIL_COLUMNS } from '../../utils/constants'
+import { AuditTrail } from '../../types/AuditTrail'
 import { useLoaderData, useNavigate } from 'react-router-dom'
-import { useConfig } from 'hooks/useConfig'
+import { useConfig } from '../../hooks/useConfig'
 
 export interface UpdatedFields {
   [fieldName: string]: { oldValue: unknown; newValue: unknown }
