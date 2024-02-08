@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Button, Paper, TableContainer } from '@mui/material'
 import { FC, useState } from 'react'
 import { SearchParameter } from '../../types/SimpleSearch'

@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Dialog,
   DialogActions,
@@ -8,6 +7,7 @@ import {
 import { DataGrid } from '@mui/x-data-grid'
 import Button from '../shared/Button'
 import { UpdatedFields } from './RecordDetails'
+import React from 'react'
 
 const columns = [
   {

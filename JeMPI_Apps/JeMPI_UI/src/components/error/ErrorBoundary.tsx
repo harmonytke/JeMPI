@@ -7,7 +7,7 @@ import {
   Stack,
   Typography
 } from '@mui/material'
-import React, { Component, ErrorInfo, ReactNode } from 'react'
+import { Component, ErrorInfo, ReactNode } from 'react'
 
 interface Props {
   children?: ReactNode

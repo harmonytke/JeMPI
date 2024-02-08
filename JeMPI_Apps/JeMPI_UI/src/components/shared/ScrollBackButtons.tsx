@@ -1,7 +1,7 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import { Box, Fab } from '@mui/material'
 import useElementSizeById from '../../hooks/useEleSize'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const scrollToBottom = () => {
   window.scrollTo({

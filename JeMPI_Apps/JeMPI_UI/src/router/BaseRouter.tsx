@@ -12,7 +12,6 @@ import SearchResult from '../components/searchResult/SearchResult'
 import Login from '../components/user/Login'
 import Dashboard from '../components/dashboard/Dashboard'
 import { DashboardDataProvider } from '../hooks/useDashboardData'
-import React from 'react'
 
 const baseRouter = createBrowserRouter([
   { path: 'login', element: <Login /> },

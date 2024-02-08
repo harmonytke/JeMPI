@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Skeleton } from '@mui/material'
 
 const Loading = () => {

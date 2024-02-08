@@ -1,4 +1,3 @@
-import React from 'react'
 import Shell from './Shell'
 import ErrorBoundary from '../../components/error/ErrorBoundary'
 import { AppConfigProvider } from '../../hooks/useAppConfig'

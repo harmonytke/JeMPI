@@ -8,7 +8,7 @@ import {
   Divider
 } from '@mui/material'
 import CustomSearchForm from '../../components/customSearch/CustomSearchForm'
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { SearchType } from '../../types/ReviewLink'
 import {
   CustomSearchQuery,

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Card, Container, Divider, Typography } from '@mui/material'
 import Button from '../shared/Button'
 import group from './Group.png'

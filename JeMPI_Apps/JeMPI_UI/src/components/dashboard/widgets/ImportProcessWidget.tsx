@@ -1,6 +1,12 @@
-import { CircularProgressProps, CircularProgress, Typography, LinearProgressProps, LinearProgress } from '@mui/material'
+import {
+  CircularProgressProps,
+  CircularProgress,
+  Typography,
+  LinearProgressProps,
+  LinearProgress
+} from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function CircularProgressWithLabel(
   props: CircularProgressProps & { value: number }
@@ -46,13 +52,15 @@ function LinearProgressWithLabel(
     </Box>
   )
 }
-export const ImportProcessWidget = ({data, ...rest}: any) => {
-
+export const ImportProcessWidget = ({ data, ...rest }: any) => {
   let progress = 0
 
-  if (data){
+  if (data) {
     // TODO: data.toFileSize * 4 is just rough estimate. Need to this properly later
-    progress = data.sizeCompleted >= (data.toFileSize * 4) ? 100 : (data.sizeCompleted/(data.toFileSize * 4)) * 100
+    progress =
+      data.sizeCompleted >= data.toFileSize * 4
+        ? 100
+        : (data.sizeCompleted / (data.toFileSize * 4)) * 100
   }
 
   return (

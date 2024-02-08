@@ -11,7 +11,7 @@ import { FieldGroup } from '../../types/Fields'
 import { AnyRecord, ValueOf } from '../../types/PatientRecord'
 import { useAppConfig } from '../../hooks/useAppConfig'
 import getCellComponent from '../../components/shared/getCellComponent'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>

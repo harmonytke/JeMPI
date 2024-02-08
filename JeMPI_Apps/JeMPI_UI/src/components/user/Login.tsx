@@ -1,4 +1,3 @@
-import React from 'react'
 import { Person } from '@mui/icons-material'
 import { Box, Button, Card, Container, Typography } from '@mui/material'
 import { AuthChecker, useAuth } from '../../hooks/useAuth'

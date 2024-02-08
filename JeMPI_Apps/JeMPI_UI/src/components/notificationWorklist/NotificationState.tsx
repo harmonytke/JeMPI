@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import React, { FC, useMemo } from 'react'
+import { FC, useMemo } from 'react'
 
 const NotificationState: FC<{ value: string }> = ({ value }) => {
   const statusColor = useMemo(() => {

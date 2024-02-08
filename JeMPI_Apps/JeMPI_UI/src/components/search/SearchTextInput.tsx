@@ -1,5 +1,5 @@
-import React from 'react'
 import { SxProps, TextField, Theme } from '@mui/material'
+import React from 'react'
 
 interface SearchTextInputProps {
   value: string | Date

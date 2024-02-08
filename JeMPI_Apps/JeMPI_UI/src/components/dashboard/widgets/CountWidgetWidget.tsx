@@ -1,5 +1,5 @@
-import React from 'react'
 import { Box, Avatar, Typography } from '@mui/material'
+import React from 'react'
 
 type countWidgetType = {
   label: string

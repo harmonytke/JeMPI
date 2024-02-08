@@ -1,7 +1,7 @@
-import React from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import { Button } from '@mui/material'
 import { SearchParameter } from '../../types/SimpleSearch'
+import React from 'react'
 
 interface AddFieldOrGroupButtonProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

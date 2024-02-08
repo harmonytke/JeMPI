@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Box,
   Container,
@@ -21,7 +20,7 @@ import { pink } from '@mui/material/colors'
 import MandU from './widgets/MandUWidget'
 import BetaFscore from './widgets/BetaFscoreWidget'
 import ConfusionMatrix from './widgets/ConfusionMatrixWidget'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CircularProgress, {
   CircularProgressProps
 } from '@mui/material/CircularProgress'

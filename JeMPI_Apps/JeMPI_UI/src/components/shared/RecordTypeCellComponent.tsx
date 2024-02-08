@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
 import { GridRenderCellParams } from '@mui/x-data-grid'
 import React from 'react'
+
 interface RecordTypeCellComponentProps {
   params: GridRenderCellParams
 }

@@ -1,5 +1,5 @@
 import { Box, Toolbar } from '@mui/material'
-import React from 'react'
+
 import ErrorBoundary from '../error/ErrorBoundary'
 import NavigationBar from './NavigationBar'
 import { Outlet, useLocation } from 'react-router-dom'

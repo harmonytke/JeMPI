@@ -1,6 +1,5 @@
 import { Step, StepLabel, Stepper as MuiStepper } from '@mui/material'
 import { REVIEW_LINK_STEPS } from '../../utils/constants'
-import React from 'react'
 
 const Stepper = () => {
   return (

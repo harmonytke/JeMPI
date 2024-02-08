@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import React from 'react'
+
 import { useConfig } from './useConfig'
 import { DashboardData } from '../types/BackendResponse'
 import { useSnackbar } from 'notistack'
+import React from 'react'
 
 export interface DashboadDataContextValue {
   data: DashboardData | undefined

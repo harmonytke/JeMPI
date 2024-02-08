@@ -33,7 +33,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useConfig } from '../../hooks/useConfig'
 import { NotificationRequest } from '../../types/BackendResponse'
 import { RESOLUTION_TYPES } from '../../utils/constants'
-import React from 'react'
 
 const getRowClassName = (type?: string) => {
   switch (type) {

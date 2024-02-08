@@ -1,4 +1,3 @@
-import React from 'react'
 import { Backdrop, CircularProgress } from '@mui/material'
 
 const LoadingSpinner = ({ id }: { id?: string }) => {

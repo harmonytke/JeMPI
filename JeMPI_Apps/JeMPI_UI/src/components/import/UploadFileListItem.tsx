@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Close as CloseIcon,
   UploadFile as UploadFileIcon

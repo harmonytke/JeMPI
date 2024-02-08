@@ -1,4 +1,3 @@
-import React from 'react'
 import { People } from '@mui/icons-material'
 import {
   Box,

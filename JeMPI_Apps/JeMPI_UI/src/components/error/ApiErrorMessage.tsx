@@ -1,6 +1,6 @@
 import { Alert, AlertTitle, Container } from '@mui/material'
 import { AxiosError } from 'axios'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 const ApiErrorMessage: FC<{ error?: AxiosError | null }> = ({
   error = { message: 'ERROR' }

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Divider, Grid, Typography } from '@mui/material'
 
 const ConfusionMatrix = ({ data, ...rest }: any) => {

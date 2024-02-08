@@ -8,6 +8,7 @@ import {
   SimpleSearchQuery
 } from '../../types/SimpleSearch'
 import routes from './Routes'
+import React from 'react'
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,4 +1,3 @@
-import React from 'react'
 import { UploadFile as UploadFileIcon } from '@mui/icons-material'
 import { Container, Divider, Stack } from '@mui/material'
 import PageHeader from '../shell/PageHeader'

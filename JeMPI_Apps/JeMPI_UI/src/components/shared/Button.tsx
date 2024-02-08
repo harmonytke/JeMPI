@@ -1,9 +1,9 @@
-import React from 'react'
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps,
   CircularProgress
 } from '@mui/material'
+import React from 'react'
 
 interface ButtonProps extends MuiButtonProps {
   variant?: 'contained' | 'text' | 'outlined' | 'header' | undefined

@@ -1,10 +1,10 @@
-import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Button, Grid, SelectChangeEvent, Typography } from '@mui/material'
 import { FieldArray } from 'formik'
 import { SearchParameter, SimpleSearchQuery } from '../../types/SimpleSearch'
 import SearchRow from '../search/SearchRow'
 import AddFieldOrGroupButton from './AddFieldOrGroupButton'
+import React from 'react'
 interface FieldGroupProps {
   values: SimpleSearchQuery
   handleChange: (e: SelectChangeEvent<string>) => void
