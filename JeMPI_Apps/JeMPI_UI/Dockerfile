@@ -26,6 +26,8 @@ COPY yarn.lock ./
 
 ENV NODE_ENV=production
 
+RUN yarn global add typescript
+
 RUN yarn
 
 COPY . .
